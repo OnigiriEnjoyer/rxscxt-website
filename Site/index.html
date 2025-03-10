@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Project For Myself</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<script>
+document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", function(event) {
+        event.preventDefault();
+        fetch(this.href)
+            .then(response => response.text())
+            .then(html => {
+                document.body.innerHTML = new DOMParser().parseFromString(html, "text/html").body.innerHTML;
+                window.history.pushState({}, "", this.href);
+            });
+    });
+});
+</script>
+
+<body>  
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home (here)</a></li>
+		<li><a href="projects.html">Projects</a></li>
+                <li><a href="https://linktr.ee/rxscxt" target="_blank">Réseaux</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="about">
+        <h1>Welcome to my place</h1>
+        <p>There is nothing but "c'est l'intention qui compte"</p>
+    </section>
+    
+    <section id="projects">
+        <h2>My current project</h2>
+        <p>Currently working on anything but this website</p>
+    </section>
+    
+    <section id="contact">
+        <h2>DM me</h2>
+        <p>Go to my linktree</p>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
